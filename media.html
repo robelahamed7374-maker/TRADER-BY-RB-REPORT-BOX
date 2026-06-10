@@ -2,14 +2,58 @@
 <html>
 <head>
 <title>Media</title>
+
+<style>
+body{
+background:#070b1a;
+color:white;
+padding:20px;
+font-family:sans-serif;
+}
+
+.box{
+background:#111833;
+padding:20px;
+border-radius:25px;
+box-shadow:0 0 25px cyan;
+}
+
+input,button{
+width:100%;
+padding:16px;
+margin-top:15px;
+border:none;
+border-radius:15px;
+}
+
+button{
+background:#00b7ff;
+color:white;
+}
+
+.back{
+background:#222;
+}
+</style>
+
 </head>
 
-<body style="background:black;color:white;text-align:center">
+<body>
 
-<h1>🖼️ Media Page</h1>
+<div class="box">
+
+<h1>🖼️ Upload Media</h1>
+
+<input type="file">
+
+<button>Upload</button>
+
+</div>
+
+<br>
 
 <a href="index.html">
-<button>⬅ Back</button>
+<button class="back">⬅ Back</button>
 </a>
 
 </body>
