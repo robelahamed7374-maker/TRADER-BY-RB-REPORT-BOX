@@ -1,39 +1,131 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Media</title>
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Media Box</title>
 
 <style>
+
 body{
-background:#070b1a;
+
+background:#030303;
+
 color:white;
-padding:20px;
+
 font-family:sans-serif;
+
+padding:20px;
+
 }
 
 .box{
-background:#111833;
+
+background:#08112c;
+
 padding:20px;
+
 border-radius:25px;
-box-shadow:0 0 25px cyan;
+
+box-shadow:0 0 30px green;
+
 }
 
-input,button{
+input,
+textarea{
+
 width:100%;
+
 padding:16px;
-margin-top:15px;
+
+margin-top:14px;
+
+background:#171717;
+
+color:white;
+
 border:none;
-border-radius:15px;
+
+border-radius:12px;
+
+box-sizing:border-box;
+
+}
+
+textarea{
+
+height:120px;
+
 }
 
 button{
-background:#00b7ff;
-color:white;
+
+width:100%;
+
+padding:18px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:16px;
+
+background:
+
+linear-gradient(
+90deg,
+green,
+yellow,
+red
+);
+
 }
 
-.back{
-background:#222;
+.item{
+
+background:#111;
+
+margin-top:20px;
+
+padding:18px;
+
+border-radius:18px;
+
 }
+
+.del{
+
+background:red;
+
+margin-top:10px;
+
+}
+
+a{
+
+display:block;
+
+text-align:center;
+
+margin-top:20px;
+
+color:white;
+
+}
+
+img{
+
+width:100%;
+
+border-radius:12px;
+
+margin-top:10px;
+
+}
+
 </style>
 
 </head>
@@ -42,19 +134,189 @@ background:#222;
 
 <div class="box">
 
-<h1>🖼️ Upload Media</h1>
+<h1>
 
-<input type="file">
+🖼 Media Box
 
-<button>Upload</button>
+</h1>
+
+<input
+id="video"
+
+placeholder="ভিডিও লিংক">
+
+<textarea
+
+id="text"
+
+placeholder="নোট লিখো">
+
+</textarea>
+
+<input
+
+id="img"
+
+type="file">
+
+<button
+
+onclick="save()">
+
+SAVE
+
+</button>
+
+<div
+id="list">
 
 </div>
 
-<br>
+</div>
 
 <a href="index.html">
-<button class="back">⬅ Back</button>
+
+← Dashboard
+
 </a>
 
+<script>
+
+let data=
+JSON.parse(
+
+localStorage
+.getItem(
+"media"
+
+)
+
+)||[];
+
+function save(){
+
+let t=
+document
+.getElementById(
+"text"
+)
+.value;
+
+let v=
+document
+.getElementById(
+"video"
+)
+.value;
+
+data.push({
+
+text:t,
+
+video:v
+
+});
+
+localStorage
+.setItem(
+
+"media",
+
+JSON.stringify(
+data
+
+)
+
+);
+
+show();
+
+}
+
+function del(i){
+
+data.splice(
+i,
+1
+);
+
+localStorage
+.setItem(
+
+"media",
+
+JSON.stringify(
+data
+
+)
+
+);
+
+show();
+
+}
+
+function show(){
+
+let html="";
+
+data.forEach(
+
+(x,i)=>{
+
+html+=`
+
+<div class=item>
+
+<p>
+
+${x.text}
+
+</p>
+
+<p>
+
+${x.video}
+
+</p>
+
+<button
+
+class=del
+
+onclick=
+
+del(${i})
+
+>
+
+DELETE
+
+</button>
+
+</div>
+
+`;
+
+}
+
+);
+
+document
+.getElementById(
+"list"
+)
+
+.innerHTML=
+
+html;
+
+}
+
+show();
+
+</script>
+
 </body>
+
 </html>
