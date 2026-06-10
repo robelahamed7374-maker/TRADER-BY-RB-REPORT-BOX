@@ -1,157 +1,146 @@
-const form = document.getElementById("setupForm");
-const list = document.getElementById("savedList");
-const resetBtn = document.getElementById("resetBtn");
+const saveBtn=document.getElementById("saveBtn");
+const savedBox=document.getElementById("savedBox");
+const search=document.getElementById("search");
 
-loadData();
+let setups=JSON.parse(localStorage.getItem("rbSetups"))||[];
 
-form.addEventListener("submit", function(e){
-e.preventDefault();
+render();
 
-const file =
-document.getElementById("photo").files[0];
+saveBtn.onclick=function(){
 
-const reader = new FileReader();
-
-reader.onload = function(){
-
-const data = {
-name:
-document.getElementById("name").value,
-
-market:
-document.getElementById("market").value,
-
-pair:
-document.getElementById("pair").value,
-
-win:
-document.getElementById("win").value,
-
-notes:
-document.getElementById("notes").value,
-
-video:
-document.getElementById("video").value,
-
-desc:
-document.getElementById("desc").value,
-
-img:
-reader.result || "",
-
-date:
-new Date().toLocaleString()
+const setup={
+name:document.getElementById("setupName").value,
+market:document.getElementById("market").value,
+pair:document.getElementById("pair").value,
+win:document.getElementById("win").value,
+note:document.getElementById("note").value,
+video:document.getElementById("video").value,
+photoText:document.getElementById("photoText").value,
+img:"",
+time:new Date().toLocaleString()
 };
 
-let setups =
-JSON.parse(
-localStorage.getItem("rbTrading")
-)||[];
+let file=document.getElementById("photo").files[0];
 
-setups.unshift(data);
+if(file){
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+setup.img=e.target.result;
+
+setups.unshift(setup);
 
 localStorage.setItem(
-"rbTrading",
+"rbSetups",
 JSON.stringify(setups)
 );
 
-form.reset();
-
-loadData();
+render();
 
 };
-
-if(file){
 
 reader.readAsDataURL(file);
 
 }else{
 
-reader.onload();
+setups.unshift(setup);
+
+localStorage.setItem(
+"rbSetups",
+JSON.stringify(setups)
+);
+
+render();
 
 }
 
-});
+document.getElementById("form").reset();
 
-function loadData(){
+};
 
-list.innerHTML="";
+function render(){
 
-let setups=
-JSON.parse(
-localStorage.getItem("rbTrading")
-)||[];
+savedBox.innerHTML="";
 
-document.getElementById(
-"total"
-).innerText=
-"Total: "+setups.length;
+let text=
+search.value?.toLowerCase()||"";
 
-setups.forEach((x,i)=>{
+setups
+.filter(
+x=>
+x.name
+.toLowerCase()
+.includes(text)
+)
 
-list.innerHTML+=`
+.forEach((x,i)=>{
 
-<div class="saveCard">
+savedBox.innerHTML+=`
 
-<div>
+<div class="card">
+
+<h2>${x.name}</h2>
+
+<p>Market :
+${x.market}</p>
+
+<p>Pair :
+${x.pair}</p>
+
+<p>Win :
+${x.win}%</p>
+
+<p>${x.note}</p>
+
+<p>${x.photoText}</p>
+
+${
+x.video
+?
+
+`
+<video
+controls
+width="100%"
+src="${x.video}">
+</video>
+`
+
+:""
+}
 
 ${
 x.img
 ?
 
-`<img src="${x.img}"
-class="preview">`
+`
+<img
+src="${x.img}"
+style="
+width:100%;
+margin-top:10px;
+border-radius:10px;
+">
+`
 
-:
-
-`<div class="preview"></div>`
-
+:""
 }
 
-</div>
-
-<div class="info">
-
-<h3>${x.name}</h3>
-
-<p>Market:
-${x.market}</p>
-
-<p>Pair:
-${x.pair}</p>
-
-<p>Win Rate:
-${x.win}</p>
-
-<p>${x.notes}</p>
-
-<p>${x.video}</p>
-
-<p>${x.desc}</p>
-
-<small>${x.date}</small>
-
-</div>
-
-<div class="actions">
-
 <button
-onclick="saveAgain(${i})"
-class="green">
+onclick="preview('${x.img}')">
 
-Save
+Preview
 
 </button>
 
 <button
-onclick="removeData(${i})"
-class="red">
+onclick="removeData(${i})">
 
 Delete
 
 </button>
-
-</div>
 
 </div>
 
@@ -163,45 +152,33 @@ Delete
 
 function removeData(i){
 
-let setups=
-JSON.parse(
-localStorage.getItem(
-"rbTrading"
-));
-
 setups.splice(i,1);
 
 localStorage.setItem(
-"rbTrading",
+"rbSetups",
 JSON.stringify(setups)
 );
 
-loadData();
+render();
 
 }
 
-function saveAgain(i){
+function preview(img){
 
-alert(
-"আগেই সেভ করা আছে"
-);
+if(!img){
+
+alert("Photo নাই");
+
+return;
+
+}
+
+window.open(img);
 
 }
 
-resetBtn.onclick=()=>{
+if(search){
 
-if(
-confirm(
-"সব ডিলিট করবেন?"
-)
-){
-
-localStorage.removeItem(
-"rbTrading"
-);
-
-loadData();
-
-}
+search.oninput=render;
 
 }
