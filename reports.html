@@ -4,332 +4,200 @@
 
 <head>
 
-<meta name="viewport"
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>Trading Reports</title>
+<title>
 
-<style>
+RB SYSTEM
 
-body{
-background:#020202;
-padding:20px;
-color:white;
-font-family:sans-serif;
-}
+</title>
 
-.box{
-background:#09112b;
-padding:20px;
-border-radius:25px;
-box-shadow:0 0 35px #00ff66;
-}
-
-input,
-textarea{
-
-width:100%;
-padding:16px;
-margin-top:14px;
-
-background:#141414;
-
-border:none;
-
-border-radius:14px;
-
-color:white;
-
-box-sizing:border-box;
-
-}
-
-textarea{
-
-height:120px;
-
-}
-
-button{
-
-width:100%;
-
-padding:18px;
-
-margin-top:18px;
-
-border:none;
-
-border-radius:16px;
-
-background:
-
-linear-gradient(
-90deg,
-green,
-yellow,
-red
-);
-
-}
-
-.card{
-
-background:#111;
-
-padding:18px;
-
-margin-top:18px;
-
-border-radius:18px;
-
-}
-
-.del{
-background:red;
-}
-
-img{
-width:100%;
-margin-top:10px;
-border-radius:12px;
-}
-
-a{
-
-display:block;
-
-margin-top:20px;
-
-text-align:center;
-
-color:white;
-
-}
-
-</style>
+<link
+rel="stylesheet"
+href="style.css">
 
 </head>
 
 <body>
 
-<div class="box">
+<div class="layout">
+
+<div class="sidebar">
 
 <h1>
 
-📊 Reports
+<span class="rb">
+
+RB
+
+</span>
+
+SYSTEM
 
 </h1>
 
-<input
-id="setup"
+<p>
 
-placeholder="Setup Name">
+TRADING DASHBOARD
 
-<textarea
-id="note"
+</p>
 
-placeholder="Strategy লিখো">
+<a href="#">
 
-</textarea>
-
-<input
-id="video"
-
-placeholder="ভিডিও লিংক">
-
-<textarea
-id="desc"
-
-placeholder="ছবির নোট">
-
-</textarea>
-
-<button
-onclick="save()">
-
-SAVE REPORT
-
-</button>
-
-<div id="list">
-
-</div>
-
-</div>
-
-<a href="index.html">
-
-← Dashboard
+📊 Trading Setup
 
 </a>
 
-<script>
+<a href="reports.html">
 
-let data=
+📈 Reports Box
 
-JSON.parse(
-localStorage
-.getItem(
-"reports"
-)
+</a>
 
-)||[];
+<a href="media.html">
 
-function save(){
+🖼 Media Box
 
-let setup=
-setupInput.value;
+</a>
 
-let note=
-noteInput.value;
+<a href="notes.html">
 
-let video=
-videoInput.value;
+📝 Notes Box
 
-let desc=
-descInput.value;
+</a>
 
-data.push({
+<a href="history.html">
 
-setup,
+🏆 History Box
 
-note,
+</a>
 
-video,
+<a href="settings.html">
 
-desc
+⚙ Settings
 
-});
+</a>
 
-localStorage
-.setItem(
+</div>
 
-"reports",
+<div class="content">
 
-JSON.stringify(
-data
+<div class="top">
 
-)
+<h1>
 
-);
+📊 Trading Setup
 
-render();
-
-}
-
-function remove(i){
-
-data.splice(
-i,
-1
-);
-
-localStorage
-.setItem(
-
-"reports",
-
-JSON.stringify(
-data
-
-)
-
-);
-
-render();
-
-}
-
-function render(){
-
-let html="";
-
-data.forEach(
-
-(x,i)=>{
-
-html+=`
-
-<div class=card>
-
-<h3>
-
-${x.setup}
-
-</h3>
-
-<p>
-
-${x.note}
-
-</p>
-
-<p>
-
-${x.video}
-
-</p>
-
-<p>
-
-${x.desc}
-
-</p>
+</h1>
 
 <button
+id="reset">
 
-class=del
-
-onclick=
-
-remove(${i})
-
->
-
-DELETE
+Reset
 
 </button>
 
 </div>
 
-`;
+<div class="grid">
 
-}
+<input
+id="name"
+placeholder="Setup Name">
 
-);
+<select
+id="market">
 
-list.innerHTML=
-html;
+<option>
 
-}
+OTC
 
-let setupInput=
-document.getElementById(
-"setup"
-);
+</option>
 
-let noteInput=
-document.getElementById(
-"note"
-);
+<option>
 
-let videoInput=
-document.getElementById(
-"video"
-);
+Real Market
 
-let descInput=
-document.getElementById(
-"desc"
-);
+</option>
 
-let list=
-document.getElementById(
-"list"
-);
+</select>
 
-render();
+<input
+id="pair"
+placeholder="Pair">
+
+<input
+id="rate"
+placeholder="Win Rate">
+
+</div>
+
+<textarea
+
+id="note"
+
+placeholder=
+
+"Strategy লিখো">
+
+</textarea>
+
+<div class="grid">
+
+<input
+
+id="video"
+
+placeholder=
+
+"Video Link">
+
+<input
+
+id="photoText"
+
+placeholder=
+
+"Photo Description">
+
+</div>
+
+<input
+
+type="file"
+
+id="image">
+
+<button
+
+id="save">
+
+SAVE
+
+</button>
+
+<h2>
+
+Saved Trading Setups
+
+</h2>
+
+<div
+
+id="saved">
+
+</div>
+
+</div>
+
+</div>
+
+<script
+src="script.js">
 
 </script>
 
