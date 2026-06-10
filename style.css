@@ -1,8 +1,8 @@
 body{
-background:#070b18;
 margin:0;
+background:#070b18;
 color:white;
-font-family:sans-serif;
+font-family:Arial;
 padding:20px;
 }
 
@@ -12,67 +12,84 @@ margin-bottom:30px;
 }
 
 .top h1{
-font-size:34px;
-margin:0;
+font-size:42px;
+margin-bottom:10px;
 }
 
 .top p{
-color:#66d9ff;
+color:#55d6ff;
+font-size:20px;
 }
 
 .grid{
+
 display:grid;
 
 grid-template-columns:
 1fr 1fr;
 
-gap:18px;
+gap:22px;
+
 }
 
 .card{
 
-padding:28px;
+height:220px;
+
+background:
+linear-gradient(
+180deg,
+#141d35,
+#0c1120
+);
 
 border-radius:30px;
 
-text-align:center;
+display:flex;
 
-background:#11182b;
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
 
 box-shadow:
-0 0 25px rgba(0,0,0,.6);
+0 0 25px rgba(0,0,0,.8);
 
+transition:.3s;
+
+}
+
+.card:active{
+transform:scale(.96);
 }
 
 .icon{
-font-size:55px;
+font-size:70px;
+margin-bottom:15px;
+}
+
+.card h3{
+font-size:28px;
+margin:0;
 }
 
 .report{
-box-shadow:
-0 0 30px purple;
+box-shadow:0 0 30px #a855f7;
 }
 
 .media{
-box-shadow:
-0 0 30px green;
+box-shadow:0 0 30px #00ff88;
 }
 
 .notes{
-box-shadow:
-0 0 30px #00aaff;
+box-shadow:0 0 30px #33bbff;
 }
 
 .history{
-box-shadow:
-0 0 30px gold;
+box-shadow:0 0 30px #ffd500;
 }
 
 .settings{
-box-shadow:
-0 0 30px hotpink;
-}
-
-h3{
-margin-top:15px;
+box-shadow:0 0 30px #ff4d9d;
 }
