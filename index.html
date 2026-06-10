@@ -1,55 +1,210 @@
+```html
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RB REPORT BOX</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+
+RB SYSTEM
+
+</title>
+
+<style>
+
+body{
+
+margin:0;
+
+background:#020307;
+
+color:white;
+
+font-family:Arial;
+
+}
+
+.header{
+
+padding:25px;
+
+text-align:center;
+
+}
+
+.header h1{
+
+font-size:48px;
+
+color:#00ff66;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.card{
+
+height:210px;
+
+border-radius:25px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+color:white;
+
+}
+
+.report{
+
+background:
+linear-gradient(
+135deg,
+#00ff66,
+#0f172a
+);
+
+}
+
+.media{
+
+background:
+linear-gradient(
+135deg,
+#ff0000,
+#0f172a
+);
+
+}
+
+.notes{
+
+background:
+linear-gradient(
+135deg,
+#ffd000,
+#0f172a
+);
+
+}
+
+.history{
+
+background:
+linear-gradient(
+135deg,
+#7a00ff,
+#0f172a
+);
+
+}
+
+.settings{
+
+background:
+linear-gradient(
+135deg,
+gray,
+#0f172a
+);
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="top">
-<h1>📊 RB REPORT BOX</h1>
-<p>TOOLS DASHBOARD</p>
+<div class="header">
+
+<h1>
+
+RB SYSTEM
+
+</h1>
+
+<p>
+
+Trading Dashboard
+
+</p>
+
 </div>
 
 <div class="grid">
 
-<div class="card report"
-onclick="openBox('Reports খুলবে')">
-<div class="icon">📝</div>
-<h3>Reports</h3>
-</div>
+<a
+class="card report"
 
-<div class="card media"
-onclick="openBox('Media খুলবে')">
-<div class="icon">🖼️</div>
-<h3>Media</h3>
-</div>
+href="reports.html">
 
-<div class="card notes"
-onclick="openBox('Notes খুলবে')">
-<div class="icon">📁</div>
-<h3>Notes</h3>
-</div>
+📊 Reports
 
-<div class="card history"
-onclick="openBox('History খুলবে')">
-<div class="icon">🏆</div>
-<h3>History</h3>
-</div>
+</a>
 
-<div class="card settings"
-onclick="openBox('Settings খুলবে')">
-<div class="icon">⚙️</div>
-<h3>Settings</h3>
-</div>
+<a
+class="card media"
+
+href="media.html">
+
+🖼 Media
+
+</a>
+
+<a
+class="card notes"
+
+href="notes.html">
+
+📝 Notes
+
+</a>
+
+<a
+class="card history"
+
+href="history.html">
+
+🏆 History
+
+</a>
+
+<a
+class="card settings"
+
+href="settings.html">
+
+⚙ Settings
+
+</a>
 
 </div>
-
-<script src="script.js"></script>
 
 </body>
+
 </html>
+```
