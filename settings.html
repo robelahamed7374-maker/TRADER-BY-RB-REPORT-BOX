@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 
@@ -6,32 +7,43 @@
 <meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>Settings</title>
+<title>
+
+Settings
+
+</title>
 
 <style>
 
 body{
 
-background:#030303;
-
-color:white;
+background:#020202;
 
 padding:20px;
 
-font-family:sans-serif;
+font-family:Arial;
+
+color:white;
 
 }
 
 .box{
 
-background:#121212;
+background:#08102b;
 
 padding:25px;
 
 border-radius:25px;
 
 box-shadow:
-0 0 30px hotpink;
+
+0 0 40px red;
+
+}
+
+h1{
+
+color:#ff4d4d;
 
 }
 
@@ -45,7 +57,7 @@ margin-top:15px;
 
 border:none;
 
-border-radius:18px;
+border-radius:15px;
 
 font-size:18px;
 
@@ -54,19 +66,33 @@ color:white;
 }
 
 .notes{
-background:#0088ff;
+
+background:#0099ff;
+
 }
 
 .media{
+
 background:#00aa55;
+
 }
 
 .report{
+
 background:#ffaa00;
+
+}
+
+.history{
+
+background:#8a2be2;
+
 }
 
 .all{
+
 background:red;
+
 }
 
 a{
@@ -75,7 +101,7 @@ display:block;
 
 text-align:center;
 
-margin-top:25px;
+margin-top:20px;
 
 color:white;
 
@@ -91,45 +117,50 @@ color:white;
 
 <h1>
 
-⚙ Settings
+⚙ SETTINGS
 
 </h1>
 
 <button
-
-class="notes"
-
-onclick="resetNotes()">
-
-Reset Notes
-
-</button>
-
-<button
-
-class="media"
-
-onclick="resetMedia()">
-
-Reset Media
-
-</button>
-
-<button
-
 class="report"
 
-onclick="resetReports()">
+onclick="reset('reports')">
 
 Reset Reports
 
 </button>
 
 <button
+class="media"
 
+onclick="reset('media')">
+
+Reset Media
+
+</button>
+
+<button
+class="notes"
+
+onclick="reset('notes')">
+
+Reset Notes
+
+</button>
+
+<button
+class="history"
+
+onclick="reset('history')">
+
+Reset History
+
+</button>
+
+<button
 class="all"
 
-onclick="resetAll()">
+onclick="allReset()">
 
 RESET ALL
 
@@ -145,52 +176,30 @@ RESET ALL
 
 <script>
 
-function resetNotes(){
+function reset(x){
 
 localStorage
-.removeItem(
-"notes"
-);
+.removeItem(x);
 
 alert(
-"Notes Deleted"
+
+x+
+
+" deleted"
+
 );
 
 }
 
-function resetMedia(){
-
-localStorage
-.removeItem(
-"media"
-);
-
-alert(
-"Media Deleted"
-);
-
-}
-
-function resetReports(){
-
-localStorage
-.removeItem(
-"setup"
-);
-
-alert(
-"Reports Deleted"
-);
-
-}
-
-function resetAll(){
+function allReset(){
 
 localStorage
 .clear();
 
 alert(
+
 "All Deleted"
+
 );
 
 }
@@ -200,3 +209,4 @@ alert(
 </body>
 
 </html>
+```
