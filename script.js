@@ -1,360 +1,145 @@
-const saveBtn=document.getElementById("saveBtn");
+const saveBtn=document.querySelector(".saveBtn");
+const saved=document.querySelector(".saved");
 
-const cards=document.getElementById("cards");
+saveBtn?.addEventListener("click",()=>{
 
-const search=document.getElementById("search");
+const card=document.createElement("div");
 
-const total=document.getElementById("total");
+card.className="reportCard";
 
-let setups=
-JSON.parse(
-localStorage.getItem(
-"rbTrading"
-)
-)||[];
-
-
-
-function save(){
-
-const photo=
-document
-.getElementById("photo")
-.files[0];
-
-const reader=
-new FileReader();
-
-reader.onload=function(){
-
-const item={
-
-name:
-name.value,
-
-market:
-market.value,
-
-pair:
-pair.value,
-
-win:
-win.value,
-
-note:
-note.value,
-
-video:
-video.value,
-
-desc:
-desc.value,
-
-photo:
-reader.result,
-
-date:
-new Date()
-.toLocaleString()
-
-};
-
-setups.unshift(item);
-
-localStorage.setItem(
-"rbTrading",
-JSON.stringify(setups)
-);
-
-render();
-
-clear();
-
-};
-
-if(photo){
-
-reader.readAsDataURL(
-photo
-);
-
-}
-
-else{
-
-reader.onload();
-
-}
-
-}
-
-
-
-function render(){
-
-cards.innerHTML="";
-
-let data=
-setups.filter(x=>
-
-x.name
-.toLowerCase()
-
-.includes(
-
-search.value
-.toLowerCase()
-
-)
-
-);
-
-
-
-total.innerHTML=
-
-"Total: "
-
-+
-
-data.length;
-
-
-
-data.forEach(
-
-(item,index)=>{
-
-cards.innerHTML+=`
-
-<div class=card>
+card.innerHTML=`
 
 <img
-class=preview
-src="${
-item.photo
-||
-'https://picsum.photos/300'
-}
-">
+class="thumb"
+src="https://picsum.photos/200?random=${Date.now()}">
 
-<div class=content>
+<div class="info">
 
-<div class=name>
+<div class="name">
 
-${item.name}
+NEW SETUP
 
 </div>
 
-<div class=row>
+<div class="row">
 
-<div>
+<div>Market: OTC</div>
 
-Market:
+<div>Pair: EUR/USD</div>
 
-${item.market}
-
-</div>
-
-<div>
-
-Pair:
-
-${item.pair}
-
-</div>
-
-<div>
-
-Win Rate:
-
-${item.win}
-
-</div>
+<div>Win: 80%</div>
 
 </div>
 
 <p>
-
-${item.note}
-
+Saved successfully
 </p>
 
-<br>
-
-<div>
-
-📅
-
-${item.date}
-
 </div>
 
-</div>
+<div class="actions">
 
-
-<div class=actions>
-
-<button
-class=play
-
-onclick="playVideo(
-
-'${item.video}'
-
-)"
-
->
-
-▶ Play
-
+<button class="play">
+▶ Play Video
 </button>
 
-
-<button
-class=view
-
-onclick="viewPhoto(
-
-'${item.photo}'
-
-)"
-
->
-
-🖼 Photo
-
+<button class="photo">
+🖼 View Photo
 </button>
 
-
-<button
-class=delete
-
-onclick="removeCard(
-
-${index}
-
-)"
-
->
-
+<button class="delete">
 🗑 Delete
-
 </button>
-
-</div>
 
 </div>
 
 `;
 
+saved.append(card);
+
+});
+
+
+
+document.addEventListener(
+"click",
+(e)=>{
+
+if(
+e.target.classList.contains(
+"delete"
+)
+){
+
+e.target
+.closest(
+".reportCard"
+)
+.remove();
+
 }
 
+if(
+e.target.classList.contains(
+"photo"
+)
+){
+
+alert(
+"Photo Open"
 );
 
 }
 
+if(
+e.target.classList.contains(
+"play"
+)
+){
 
-
-function removeCard(i){
-
-setups.splice(i,1);
-
-localStorage.setItem(
-
-"rbTrading",
-
-JSON.stringify(setups)
-
-);
-
-render();
-
-}
-
-
-
-function playVideo(url){
-
-if(url){
-
-window.open(
-
-url,
-
-"_blank"
-
-);
-
-}
-
-}
-
-
-
-function viewPhoto(url){
-
-if(url){
-
-window.open(
-
-url,
-
-"_blank"
-
+alert(
+"Video Play"
 );
 
 }
 
 }
-
-
-
-function clear(){
-
-name.value="";
-
-pair.value="";
-
-win.value="";
-
-note.value="";
-
-video.value="";
-
-desc.value="";
-
-photo.value="";
-
-}
-
-
-
-saveBtn.onclick=save;
-
-search.oninput=render;
+);
 
 
 
 document
-.getElementById(
-"resetBtn"
+.querySelector(
+".search"
 )
+?.addEventListener(
+"input",
+e=>{
 
-.onclick=
+let v=
+e.target
+.value
+.toLowerCase();
 
-()=>{
+document
+.querySelectorAll(
+".reportCard"
+)
+.forEach(x=>{
 
-localStorage.removeItem(
-"rbTrading"
-);
+x.style.display=
+x.innerText
+.toLowerCase()
+.includes(v)
 
-setups=[];
+?
 
-render();
+"flex"
 
-};
+:
 
+"none";
 
+});
 
-render();
+});
