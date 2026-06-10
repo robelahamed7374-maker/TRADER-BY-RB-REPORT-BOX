@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 
@@ -6,51 +7,32 @@
 <meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>RB Trading Box</title>
+<title>Trading Reports</title>
 
 <style>
 
 body{
-
 background:#020202;
-
 padding:20px;
-
-font-family:sans-serif;
-
 color:white;
-
+font-family:sans-serif;
 }
 
 .box{
-
-background:#08102b;
-
-padding:22px;
-
+background:#09112b;
+padding:20px;
 border-radius:25px;
-
-box-shadow:
-0 0 25px #00ff66;
-
-}
-
-h1{
-
-color:#ffd000;
-
+box-shadow:0 0 35px #00ff66;
 }
 
 input,
 textarea{
 
 width:100%;
-
-margin-top:12px;
-
 padding:16px;
+margin-top:14px;
 
-background:#161616;
+background:#141414;
 
 border:none;
 
@@ -72,15 +54,13 @@ button{
 
 width:100%;
 
-margin-top:20px;
-
 padding:18px;
+
+margin-top:18px;
 
 border:none;
 
-border-radius:15px;
-
-font-size:20px;
+border-radius:16px;
 
 background:
 
@@ -93,16 +73,26 @@ red
 
 }
 
-.result{
+.card{
 
-margin-top:25px;
-
-background:#121212;
+background:#111;
 
 padding:18px;
 
-border-radius:15px;
+margin-top:18px;
 
+border-radius:18px;
+
+}
+
+.del{
+background:red;
+}
+
+img{
+width:100%;
+margin-top:10px;
+border-radius:12px;
 }
 
 a{
@@ -127,53 +117,48 @@ color:white;
 
 <h1>
 
-📊 Trading Setup
+📊 Reports
 
 </h1>
 
 <input
-id="title"
+id="setup"
+
 placeholder="Setup Name">
 
 <textarea
-id="notes"
-placeholder="ট্রেডিং নোট লিখো">
+id="note"
+
+placeholder="Strategy লিখো">
 
 </textarea>
 
 <input
 id="video"
-placeholder="ভিডিও লিংক লিখো">
+
+placeholder="ভিডিও লিংক">
 
 <textarea
-id="photo"
+id="desc"
 
-placeholder="ছবি সম্পর্কে লিখো">
+placeholder="ছবির নোট">
 
 </textarea>
 
-<input
-type="file">
-
 <button
-onclick="saveData()">
+onclick="save()">
 
-SAVE
+SAVE REPORT
 
 </button>
 
-<div
-class="result"
-id="show">
-
-কিছু সেভ হয়নি
+<div id="list">
 
 </div>
 
 </div>
 
-<a
-href="index.html">
+<a href="index.html">
 
 ← Dashboard
 
@@ -181,91 +166,174 @@ href="index.html">
 
 <script>
 
-function saveData(){
+let data=
 
-let title=
-document
-.getElementById(
-"title"
-).value;
+JSON.parse(
+localStorage
+.getItem(
+"reports"
+)
 
-let notes=
-document
-.getElementById(
-"notes"
-).value;
+)||[];
+
+function save(){
+
+let setup=
+setupInput.value;
+
+let note=
+noteInput.value;
 
 let video=
-document
-.getElementById(
-"video"
-).value;
+videoInput.value;
 
-let photo=
-document
-.getElementById(
-"photo"
-).value;
+let desc=
+descInput.value;
 
-localStorage.setItem(
-"setup",
+data.push({
 
-JSON.stringify({
+setup,
 
-title,
-
-notes,
+note,
 
 video,
 
-photo
+desc
 
-})
+});
+
+localStorage
+.setItem(
+
+"reports",
+
+JSON.stringify(
+data
+
+)
 
 );
 
-load();
+render();
 
 }
 
-function load(){
+function remove(i){
 
-let data=
-JSON.parse(
+data.splice(
+i,
+1
+);
 
 localStorage
-.getItem(
-"setup"
+.setItem(
+
+"reports",
+
+JSON.stringify(
+data
+
 )
 
 );
 
-if(!data)return;
+render();
 
-document
-.getElementById(
-"show"
-)
+}
 
-.innerHTML=
+function render(){
 
-`
-<h3>${data.title}</h3>
+let html="";
 
-<p>${data.notes}</p>
+data.forEach(
 
-<p>${data.video}</p>
+(x,i)=>{
 
-<p>${data.photo}</p>
+html+=`
+
+<div class=card>
+
+<h3>
+
+${x.setup}
+
+</h3>
+
+<p>
+
+${x.note}
+
+</p>
+
+<p>
+
+${x.video}
+
+</p>
+
+<p>
+
+${x.desc}
+
+</p>
+
+<button
+
+class=del
+
+onclick=
+
+remove(${i})
+
+>
+
+DELETE
+
+</button>
+
+</div>
 
 `;
 
 }
 
-load();
+);
+
+list.innerHTML=
+html;
+
+}
+
+let setupInput=
+document.getElementById(
+"setup"
+);
+
+let noteInput=
+document.getElementById(
+"note"
+);
+
+let videoInput=
+document.getElementById(
+"video"
+);
+
+let descInput=
+document.getElementById(
+"desc"
+);
+
+let list=
+document.getElementById(
+"list"
+);
+
+render();
 
 </script>
 
 </body>
 
 </html>
+```
