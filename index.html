@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
 
-<meta name="viewport"
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
 content="width=device-width,initial-scale=1">
 
 <title>
+
 RB SYSTEM
+
 </title>
 
 <style>
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 font-family:Arial;
+
 }
 
 body{
@@ -38,7 +47,7 @@ text-align:center;
 
 .header h1{
 
-font-size:48px;
+font-size:55px;
 
 color:#00ff55;
 
@@ -46,57 +55,9 @@ color:#00ff55;
 
 .header p{
 
-color:#999;
+color:#888;
 
 margin-top:10px;
-
-}
-
-.stats{
-
-display:grid;
-
-grid-template-columns:
-1fr 1fr 1fr;
-
-gap:15px;
-
-padding:20px;
-
-}
-
-.stat{
-
-background:#08112c;
-
-padding:20px;
-
-border-radius:20px;
-
-text-align:center;
-
-box-shadow:
-0 0 20px rgba(0,255,100,.3);
-
-}
-
-.stat h2{
-
-font-size:34px;
-
-}
-
-.stat p{
-
-font-size:18px;
-
-margin-top:10px;
-
-}
-
-.stat span{
-
-color:#999;
 
 }
 
@@ -107,17 +68,14 @@ display:grid;
 grid-template-columns:
 1fr 1fr;
 
-gap:20px;
+gap:18px;
 
 padding:20px;
 
 }
 
-.card{
-
-height:190px;
-
-border-radius:25px;
+.card,
+.big-card{
 
 display:flex;
 
@@ -125,14 +83,17 @@ align-items:center;
 
 justify-content:center;
 
-font-size:28px;
+height:180px;
+
+border-radius:22px;
 
 text-decoration:none;
 
 color:white;
 
-box-shadow:
-0 0 35px rgba(255,255,255,.15);
+font-size:28px;
+
+font-weight:bold;
 
 }
 
@@ -141,8 +102,8 @@ box-shadow:
 background:
 linear-gradient(
 135deg,
-#00ff44,
-#071133
+#00ff55,
+#06142d
 );
 
 }
@@ -153,7 +114,7 @@ background:
 linear-gradient(
 135deg,
 #ff0000,
-#071133
+#06142d
 );
 
 }
@@ -163,8 +124,8 @@ linear-gradient(
 background:
 linear-gradient(
 135deg,
-#ffe100,
-#071133
+#ffd000,
+#06142d
 );
 
 }
@@ -174,8 +135,8 @@ linear-gradient(
 background:
 linear-gradient(
 135deg,
-#8000ff,
-#071133
+#8a00ff,
+#06142d
 );
 
 }
@@ -186,31 +147,35 @@ background:
 linear-gradient(
 135deg,
 gray,
-#071133
+#06142d
+);
+
+}
+
+.big-card{
+
+background:
+linear-gradient(
+135deg,
+#00ff66,
+#06142d
 );
 
 }
 
 .footer{
 
-padding:40px;
+padding:30px;
 
 text-align:center;
 
-color:#777;
+color:#666;
 
 }
 
 @media(max-width:700px){
 
 .grid{
-
-grid-template-columns:
-1fr;
-
-}
-
-.stats{
 
 grid-template-columns:
 1fr;
@@ -241,87 +206,75 @@ Trading Dashboard
 
 </div>
 
-<div class="stats">
-
-<div class="stat">
-
-<h2>📊</h2>
-
-<p>Reports</p>
-
-<span>Saved Data</span>
-
-</div>
-
-<div class="stat">
-
-<h2>🖼</h2>
-
-<p>Media</p>
-
-<span>Gallery</span>
-
-</div>
-
-<div class="stat">
-
-<h2>📝</h2>
-
-<p>Notes</p>
-
-<span>Storage</span>
-
-</div>
-
-</div>
-
 <div class="grid">
 
 <a
 class="card report"
+
 href="reports.html">
 
 📊 Reports
 
 </a>
 
+
 <a
 class="card media"
+
 href="media.html">
 
 🖼 Media
 
 </a>
 
+
 <a
 class="card notes"
+
 href="notes.html">
 
 📝 Notes
 
 </a>
 
+
 <a
 class="card history"
+
 href="history.html">
 
 🏆 History
 
 </a>
 
+
 <a
 class="card settings"
+
 href="settings.html">
 
 ⚙ Settings
 
 </a>
 
+
+<a
+href="trading.html">
+
+<div class="big-card">
+
+📊 Trading Setup
+
 </div>
+
+</a>
+
+</div>
+
 
 <div class="footer">
 
-© RB SYSTEM
+RB SYSTEM
 
 </div>
 
