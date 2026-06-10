@@ -1,22 +1,34 @@
-function saveReport(){
+document.querySelector(".report")
+.onclick=()=>{
 
-let title=document.getElementById("title").value;
+alert("Reports খুলবে");
 
-let text=document.getElementById("text").value;
+};
 
-document.getElementById("reports").innerHTML+=`
-<div>
-<h3>${title}</h3>
-<p>${text}</p>
+document.querySelector(".media")
+.onclick=()=>{
 
-<button onclick="this.parentElement.remove()">
-Delete
-</button>
+alert("Media খুলবে");
 
-</div>
-`;
+};
 
-}
+document.querySelector(".notes")
+.onclick=()=>{
 
-document.querySelector("button")
-.addEventListener("click",saveReport);
+alert("Notes খুলবে");
+
+};
+
+document.querySelector(".history")
+.onclick=()=>{
+
+alert("History খুলবে");
+
+};
+
+document.querySelector(".settings")
+.onclick=()=>{
+
+alert("Settings খুলবে");
+
+};
