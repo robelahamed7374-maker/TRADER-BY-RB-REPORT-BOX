@@ -1,27 +1,201 @@
 <!DOCTYPE html>
 <html>
 
-<body style="background:black;color:white;padding:20px">
+<head>
 
-<h1>⚙️ Settings</h1>
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
-<button>Dark Mode</button>
+<title>Settings</title>
 
-<br><br>
+<style>
 
-<button>Change Name</button>
+body{
 
-<br><br>
+background:#030303;
 
-<a href="index.html">
+color:white;
 
-<button>
+padding:20px;
 
-⬅ Back
+font-family:sans-serif;
+
+}
+
+.box{
+
+background:#121212;
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:
+0 0 30px hotpink;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+margin-top:15px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:18px;
+
+color:white;
+
+}
+
+.notes{
+background:#0088ff;
+}
+
+.media{
+background:#00aa55;
+}
+
+.report{
+background:#ffaa00;
+}
+
+.all{
+background:red;
+}
+
+a{
+
+display:block;
+
+text-align:center;
+
+margin-top:25px;
+
+color:white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>
+
+⚙ Settings
+
+</h1>
+
+<button
+
+class="notes"
+
+onclick="resetNotes()">
+
+Reset Notes
 
 </button>
 
+<button
+
+class="media"
+
+onclick="resetMedia()">
+
+Reset Media
+
+</button>
+
+<button
+
+class="report"
+
+onclick="resetReports()">
+
+Reset Reports
+
+</button>
+
+<button
+
+class="all"
+
+onclick="resetAll()">
+
+RESET ALL
+
+</button>
+
+</div>
+
+<a href="index.html">
+
+← Dashboard
+
 </a>
+
+<script>
+
+function resetNotes(){
+
+localStorage
+.removeItem(
+"notes"
+);
+
+alert(
+"Notes Deleted"
+);
+
+}
+
+function resetMedia(){
+
+localStorage
+.removeItem(
+"media"
+);
+
+alert(
+"Media Deleted"
+);
+
+}
+
+function resetReports(){
+
+localStorage
+.removeItem(
+"setup"
+);
+
+alert(
+"Reports Deleted"
+);
+
+}
+
+function resetAll(){
+
+localStorage
+.clear();
+
+alert(
+"All Deleted"
+);
+
+}
+
+</script>
 
 </body>
 
