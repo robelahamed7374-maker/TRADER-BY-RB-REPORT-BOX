@@ -1,24 +1,78 @@
 body{
-background:#111;
+background:#070b18;
+margin:0;
 color:white;
-padding:20px;
 font-family:sans-serif;
+padding:20px;
 }
 
-input,textarea{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:10px;
+.top{
+text-align:center;
+margin-bottom:30px;
 }
 
-button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
+.top h1{
+font-size:34px;
+margin:0;
 }
 
-#reports{
-margin-top:20px;
+.top p{
+color:#66d9ff;
+}
+
+.grid{
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:18px;
+}
+
+.card{
+
+padding:28px;
+
+border-radius:30px;
+
+text-align:center;
+
+background:#11182b;
+
+box-shadow:
+0 0 25px rgba(0,0,0,.6);
+
+}
+
+.icon{
+font-size:55px;
+}
+
+.report{
+box-shadow:
+0 0 30px purple;
+}
+
+.media{
+box-shadow:
+0 0 30px green;
+}
+
+.notes{
+box-shadow:
+0 0 30px #00aaff;
+}
+
+.history{
+box-shadow:
+0 0 30px gold;
+}
+
+.settings{
+box-shadow:
+0 0 30px hotpink;
+}
+
+h3{
+margin-top:15px;
 }
