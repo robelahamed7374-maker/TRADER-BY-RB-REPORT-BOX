@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<title>Reports</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
 
 body{
-background:#070b1a;
+background:#02061a;
 color:white;
 font-family:sans-serif;
 padding:20px;
 }
 
 .box{
-
-background:#111833;
-
+background:#0d1545;
 padding:20px;
-
-border-radius:25px;
-
-box-shadow:0 0 30px #5e5eff;
-
+border-radius:20px;
+box-shadow:0 0 35px #4450ff;
 }
 
-input,select,textarea{
+h1{
+font-size:40px;
+}
+
+input,
+select,
+textarea{
 
 width:100%;
-
-padding:15px;
-
 margin-top:15px;
 
-background:#181f45;
+padding:18px;
+
+background:#161f59;
 
 border:none;
 
-border-radius:15px;
-
 color:white;
+
+border-radius:12px;
 
 box-sizing:border-box;
 
@@ -56,19 +54,27 @@ margin-top:20px;
 
 border:none;
 
-border-radius:18px;
-
-background:#6a5cff;
-
-color:white;
+border-radius:15px;
 
 font-size:20px;
+
+background:#6958ff;
+
+color:white;
 
 }
 
 .back{
 
-background:#222;
+display:block;
+
+margin-top:20px;
+
+text-align:center;
+
+color:white;
+
+text-decoration:none;
 
 }
 
@@ -80,44 +86,38 @@ background:#222;
 
 <div class="box">
 
-<h1>📋 Submit Report</h1>
+<h1>📊 Trading Setup</h1>
 
-<input placeholder="Member Name">
+<input placeholder="Setup Name">
 
 <select>
 
-<option>Reason...</option>
+<option>OTC</option>
 
-<option>Late</option>
-
-<option>Spam</option>
-
-<option>Other</option>
+<option>Real Market</option>
 
 </select>
 
-<textarea
-rows="6"
-placeholder="Description">
-</textarea>
+<input placeholder="Pair">
+
+<input placeholder="Win Rate">
+
+<textarea rows="6"
+placeholder="Notes / Strategy"></textarea>
 
 <input type="file">
 
 <button>
-Submit Report
+Save Setup
 </button>
 
 </div>
 
-<br>
+<a
+href="index.html"
+class="back">
 
-<a href="index.html">
-
-<button class="back">
-
-⬅ Back
-
-</button>
+← Dashboard
 
 </a>
 
