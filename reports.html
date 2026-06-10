@@ -1,23 +1,33 @@
+```html
 <!DOCTYPE html>
 <html>
 
 <head>
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
-<title>Trading Setup</title>
+<title>
+RB Reports
+</title>
 
 <style>
 
-body{
-background:#02050d;
-color:white;
-font-family:Arial;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
-.wrap{
+body{
+
+background:#02050d;
+
+color:white;
+
 padding:20px;
+
 }
 
 .box{
@@ -29,7 +39,15 @@ padding:20px;
 border-radius:25px;
 
 box-shadow:
-0 0 40px #00ff55;
+0 0 35px #00ff55;
+
+}
+
+h1{
+
+color:#ffe600;
+
+margin-bottom:20px;
 
 }
 
@@ -41,17 +59,21 @@ width:100%;
 
 padding:16px;
 
-margin-top:10px;
-
 margin-bottom:15px;
 
 background:#111;
 
-color:white;
-
-border:1px solid #222;
+border:none;
 
 border-radius:14px;
+
+color:white;
+
+}
+
+textarea{
+
+height:150px;
 
 }
 
@@ -61,13 +83,13 @@ width:100%;
 
 padding:18px;
 
+margin-top:10px;
+
 border:none;
 
 border-radius:16px;
 
 font-size:20px;
-
-margin-top:10px;
 
 background:
 
@@ -82,7 +104,13 @@ red
 
 .search{
 
-background:#0077ff;
+background:#0088ff;
+
+}
+
+.reset{
+
+background:red;
 
 }
 
@@ -90,7 +118,7 @@ background:#0077ff;
 
 background:#111;
 
-padding:15px;
+padding:18px;
 
 margin-top:20px;
 
@@ -98,23 +126,13 @@ border-radius:20px;
 
 }
 
-img{
+.card img{
 
 width:100%;
 
-border-radius:14px;
+border-radius:15px;
 
 margin-top:10px;
-
-}
-
-video{
-
-width:100%;
-
-margin-top:10px;
-
-border-radius:14px;
 
 }
 
@@ -124,61 +142,84 @@ background:red;
 
 }
 
+a{
+
+display:block;
+
+text-align:center;
+
+margin-top:20px;
+
+color:white;
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="wrap">
-
 <div class="box">
 
 <h1>
 
-📊 Trading Setup
+📊 Trading Reports
 
 </h1>
 
 <input
-id="name"
+id="setup"
+
 placeholder="Setup Name">
 
-<select id="market">
+<select
+id="market">
 
-<option>OTC</option>
+<option>
+OTC
+</option>
 
-<option>Real Market</option>
+<option>
+Real Market
+</option>
 
 </select>
 
 <input
 id="pair"
+
 placeholder="Pair">
 
 <input
 id="win"
+
 placeholder="Win Rate">
 
 <textarea
 id="note"
-rows="5"
-placeholder="Strategy লিখো"></textarea>
+
+placeholder="Strategy লিখো">
+
+</textarea>
 
 <input
 id="video"
+
 placeholder="Video Link">
 
 <input
-id="photoText"
+id="photo"
+
 placeholder="Photo Description">
 
 <input
-id="file"
-type="file">
+type="file"
+
+id="img">
 
 <button
-onclick="saveData()">
+onclick="save()">
 
 SAVE
 
@@ -192,22 +233,27 @@ placeholder="Search">
 <button
 class="search"
 
-onclick="searchData()">
+onclick="find()">
 
 SEARCH
 
 </button>
 
-</div>
+<button
+class="reset"
+
+onclick="resetAll()">
+
+RESET REPORTS
+
+</button>
 
 <div
 id="saved">
 
 </div>
 
-<br>
-
-<center>
+</div>
 
 <a href="index.html">
 
@@ -215,20 +261,11 @@ id="saved">
 
 </a>
 
-</center>
-
-</div>
-
 <script>
 
 let preview=""
 
-document
-.getElementById(
-"file"
-)
-
-.onchange=e=>{
+img.onchange=(e)=>{
 
 let file=
 e.target.files[0]
@@ -252,12 +289,12 @@ file
 
 }
 
-function saveData(){
+function save(){
 
-let obj={
+let data={
 
-name:
-name.value,
+setup:
+setup.value,
 
 market:
 market.value,
@@ -275,7 +312,7 @@ video:
 video.value,
 
 photo:
-photoText.value,
+photo.value,
 
 img:
 preview
@@ -295,9 +332,10 @@ localStorage
 
 )
 
-all.unshift(obj)
+all.unshift(data)
 
-localStorage.setItem(
+localStorage
+.setItem(
 
 "reports",
 
@@ -336,16 +374,9 @@ render()
 
 }
 
-function render(filter=""){
+function render(q=""){
 
-let box=
-
-document
-.getElementById(
-"saved"
-)
-
-box.innerHTML=""
+saved.innerHTML=""
 
 let all=
 
@@ -362,15 +393,17 @@ localStorage
 
 all
 
-.filter(x=>
+.filter(
 
-x.name
+x=>
+
+x.setup
 
 .toLowerCase()
 
 .includes(
 
-filter
+q
 
 .toLowerCase()
 
@@ -382,13 +415,13 @@ filter
 
 (x,i)=>{
 
-box.innerHTML+=`
+saved.innerHTML+=`
 
 <div class=card>
 
 <h2>
 
-${x.name}
+${x.setup}
 
 </h2>
 
@@ -429,12 +462,18 @@ x.video
 
 ?
 
-`<video controls>
+`
+<a
+href=
 
-<source
-src="${x.video}">
+"${x.video}"
 
-</video>`
+target=_blank>
+
+▶ VIDEO
+
+</a>
+`
 
 :
 
@@ -447,7 +486,15 @@ x.img
 
 ?
 
-`<img src="${x.img}">`
+`
+
+<img
+src=
+"${x.img}"
+
+>
+
+`
 
 :
 
@@ -457,7 +504,11 @@ x.img
 
 <button
 class=del
-onclick="del(${i})">
+onclick=
+
+del(${i})
+
+>
 
 DELETE
 
@@ -473,13 +524,24 @@ DELETE
 
 }
 
-function searchData(){
+function find(){
 
 render(
 
 search.value
 
 )
+
+}
+
+function resetAll(){
+
+localStorage
+.removeItem(
+"reports"
+)
+
+render()
 
 }
 
@@ -490,3 +552,4 @@ render()
 </body>
 
 </html>
+```
