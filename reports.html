@@ -1,128 +1,154 @@
-```html
 <!DOCTYPE html>
 <html>
 
 <head>
 
-<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<title>Trading Setup</title>
 
-<title>
+<style>
 
-RB SYSTEM
+body{
+background:#02050d;
+color:white;
+font-family:Arial;
+margin:0;
+}
 
-</title>
+.wrap{
+padding:20px;
+}
 
-<link
-rel="stylesheet"
-href="style.css">
+.box{
+
+background:#08112c;
+
+padding:20px;
+
+border-radius:25px;
+
+box-shadow:
+0 0 40px #00ff55;
+
+}
+
+input,
+textarea,
+select{
+
+width:100%;
+
+padding:16px;
+
+margin-top:10px;
+
+margin-bottom:15px;
+
+background:#111;
+
+color:white;
+
+border:1px solid #222;
+
+border-radius:14px;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:16px;
+
+font-size:20px;
+
+margin-top:10px;
+
+background:
+
+linear-gradient(
+90deg,
+green,
+yellow,
+red
+);
+
+}
+
+.search{
+
+background:#0077ff;
+
+}
+
+.card{
+
+background:#111;
+
+padding:15px;
+
+margin-top:20px;
+
+border-radius:20px;
+
+}
+
+img{
+
+width:100%;
+
+border-radius:14px;
+
+margin-top:10px;
+
+}
+
+video{
+
+width:100%;
+
+margin-top:10px;
+
+border-radius:14px;
+
+}
+
+.del{
+
+background:red;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="layout">
+<div class="wrap">
 
-<div class="sidebar">
-
-<h1>
-
-<span class="rb">
-
-RB
-
-</span>
-
-SYSTEM
-
-</h1>
-
-<p>
-
-TRADING DASHBOARD
-
-</p>
-
-<a href="#">
-
-📊 Trading Setup
-
-</a>
-
-<a href="reports.html">
-
-📈 Reports Box
-
-</a>
-
-<a href="media.html">
-
-🖼 Media Box
-
-</a>
-
-<a href="notes.html">
-
-📝 Notes Box
-
-</a>
-
-<a href="history.html">
-
-🏆 History Box
-
-</a>
-
-<a href="settings.html">
-
-⚙ Settings
-
-</a>
-
-</div>
-
-<div class="content">
-
-<div class="top">
+<div class="box">
 
 <h1>
 
 📊 Trading Setup
 
 </h1>
-
-<button
-id="reset">
-
-Reset
-
-</button>
-
-</div>
-
-<div class="grid">
 
 <input
 id="name"
 placeholder="Setup Name">
 
-<select
-id="market">
+<select id="market">
 
-<option>
+<option>OTC</option>
 
-OTC
-
-</option>
-
-<option>
-
-Real Market
-
-</option>
+<option>Real Market</option>
 
 </select>
 
@@ -131,77 +157,336 @@ id="pair"
 placeholder="Pair">
 
 <input
-id="rate"
+id="win"
 placeholder="Win Rate">
 
-</div>
-
 <textarea
-
 id="note"
-
-placeholder=
-
-"Strategy লিখো">
-
-</textarea>
-
-<div class="grid">
+rows="5"
+placeholder="Strategy লিখো"></textarea>
 
 <input
-
 id="video"
-
-placeholder=
-
-"Video Link">
+placeholder="Video Link">
 
 <input
-
 id="photoText"
-
-placeholder=
-
-"Photo Description">
-
-</div>
+placeholder="Photo Description">
 
 <input
-
-type="file"
-
-id="image">
+id="file"
+type="file">
 
 <button
-
-id="save">
+onclick="saveData()">
 
 SAVE
 
 </button>
 
-<h2>
+<input
+id="search"
 
-Saved Trading Setups
+placeholder="Search">
 
-</h2>
+<button
+class="search"
+
+onclick="searchData()">
+
+SEARCH
+
+</button>
+
+</div>
 
 <div
-
 id="saved">
 
 </div>
 
-</div>
+<br>
+
+<center>
+
+<a href="index.html">
+
+← Dashboard
+
+</a>
+
+</center>
 
 </div>
 
-<script
-src="script.js">
+<script>
+
+let preview=""
+
+document
+.getElementById(
+"file"
+)
+
+.onchange=e=>{
+
+let file=
+e.target.files[0]
+
+if(!file)
+return
+
+let reader=
+new FileReader()
+
+reader.onload=()=>{
+
+preview=
+reader.result
+
+}
+
+reader.readAsDataURL(
+file
+)
+
+}
+
+function saveData(){
+
+let obj={
+
+name:
+name.value,
+
+market:
+market.value,
+
+pair:
+pair.value,
+
+win:
+win.value,
+
+note:
+note.value,
+
+video:
+video.value,
+
+photo:
+photoText.value,
+
+img:
+preview
+
+}
+
+let all=
+
+JSON.parse(
+
+localStorage
+.getItem(
+"reports"
+)
+
+||"[]"
+
+)
+
+all.unshift(obj)
+
+localStorage.setItem(
+
+"reports",
+
+JSON.stringify(all)
+
+)
+
+render()
+
+}
+
+function del(i){
+
+let all=
+
+JSON.parse(
+
+localStorage
+.getItem(
+"reports"
+)
+
+)
+
+all.splice(i,1)
+
+localStorage.setItem(
+
+"reports",
+
+JSON.stringify(all)
+
+)
+
+render()
+
+}
+
+function render(filter=""){
+
+let box=
+
+document
+.getElementById(
+"saved"
+)
+
+box.innerHTML=""
+
+let all=
+
+JSON.parse(
+
+localStorage
+.getItem(
+"reports"
+)
+
+||"[]"
+
+)
+
+all
+
+.filter(x=>
+
+x.name
+
+.toLowerCase()
+
+.includes(
+
+filter
+
+.toLowerCase()
+
+)
+
+)
+
+.forEach(
+
+(x,i)=>{
+
+box.innerHTML+=`
+
+<div class=card>
+
+<h2>
+
+${x.name}
+
+</h2>
+
+<p>
+
+${x.market}
+
+</p>
+
+<p>
+
+${x.pair}
+
+</p>
+
+<p>
+
+${x.win}
+
+%
+
+</p>
+
+<p>
+
+${x.note}
+
+</p>
+
+<p>
+
+${x.photo}
+
+</p>
+
+${
+x.video
+
+?
+
+`<video controls>
+
+<source
+src="${x.video}">
+
+</video>`
+
+:
+
+""
+
+}
+
+${
+x.img
+
+?
+
+`<img src="${x.img}">`
+
+:
+
+""
+
+}
+
+<button
+class=del
+onclick="del(${i})">
+
+DELETE
+
+</button>
+
+</div>
+
+`
+
+}
+
+)
+
+}
+
+function searchData(){
+
+render(
+
+search.value
+
+)
+
+}
+
+render()
 
 </script>
 
 </body>
 
 </html>
-```
