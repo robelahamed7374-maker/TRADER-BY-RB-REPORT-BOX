@@ -1,96 +1,55 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RB REPORT BOX</title>
 
-<link rel="stylesheet"
-href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
 <div class="top">
-
 <h1>📊 RB REPORT BOX</h1>
-
 <p>TOOLS DASHBOARD</p>
-
 </div>
-
 
 <div class="grid">
 
-
-<div
-class="card report"
-onclick="openReport()">
-
+<div class="card report"
+onclick="openBox('Reports খুলবে')">
 <div class="icon">📝</div>
-
 <h3>Reports</h3>
-
 </div>
 
-
-
-<div
-class="card media"
-onclick="openMedia()">
-
+<div class="card media"
+onclick="openBox('Media খুলবে')">
 <div class="icon">🖼️</div>
-
 <h3>Media</h3>
-
 </div>
 
-
-
-<div
-class="card notes"
-onclick="openNotes()">
-
-<div class="icon">📂</div>
-
+<div class="card notes"
+onclick="openBox('Notes খুলবে')">
+<div class="icon">📁</div>
 <h3>Notes</h3>
-
 </div>
 
-
-
-<div
-class="card history"
-onclick="openHistory()">
-
+<div class="card history"
+onclick="openBox('History খুলবে')">
 <div class="icon">🏆</div>
-
 <h3>History</h3>
-
 </div>
 
-
-
-<div
-class="card settings"
-onclick="openSettings()">
-
+<div class="card settings"
+onclick="openBox('Settings খুলবে')">
 <div class="icon">⚙️</div>
-
 <h3>Settings</h3>
-
 </div>
 
-
 </div>
-
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
