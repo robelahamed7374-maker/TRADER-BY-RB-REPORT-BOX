@@ -1,18 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Reports</title>
+
+<style>
+
+body{
+background:#070b1a;
+color:white;
+font-family:sans-serif;
+padding:20px;
+}
+
+.box{
+
+background:#111833;
+
+padding:20px;
+
+border-radius:25px;
+
+box-shadow:0 0 30px #5e5eff;
+
+}
+
+input,select,textarea{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+background:#181f45;
+
+border:none;
+
+border-radius:15px;
+
+color:white;
+
+box-sizing:border-box;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:18px;
+
+background:#6a5cff;
+
+color:white;
+
+font-size:20px;
+
+}
+
+.back{
+
+background:#222;
+
+}
+
+</style>
+
 </head>
 
-<body style="background:black;color:white;text-align:center">
+<body>
 
-<h1>📋 Reports Page</h1>
+<div class="box">
 
-<p>এখানে পরে Reports এর কাজ বসবে</p>
+<h1>📋 Submit Report</h1>
+
+<input placeholder="Member Name">
+
+<select>
+
+<option>Reason...</option>
+
+<option>Late</option>
+
+<option>Spam</option>
+
+<option>Other</option>
+
+</select>
+
+<textarea
+rows="6"
+placeholder="Description">
+</textarea>
+
+<input type="file">
+
+<button>
+Submit Report
+</button>
+
+</div>
+
+<br>
 
 <a href="index.html">
-<button>⬅ Back</button>
+
+<button class="back">
+
+⬅ Back
+
+</button>
+
 </a>
 
 </body>
+
 </html>
