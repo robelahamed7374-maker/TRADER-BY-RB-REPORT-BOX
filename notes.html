@@ -3,28 +3,62 @@
 
 <head>
 
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Notes Box</title>
+
 <style>
 
 body{
-background:black;
-color:white;
+
+background:#030303;
+
 padding:20px;
+
+font-family:sans-serif;
+
+color:white;
+
+}
+
+.box{
+
+background:#0b1533;
+
+padding:22px;
+
+border-radius:25px;
+
+box-shadow:
+0 0 30px #00aaff;
+
+}
+
+input,
+textarea{
+
+width:100%;
+
+padding:16px;
+
+margin-top:15px;
+
+background:#171717;
+
+border:none;
+
+border-radius:14px;
+
+color:white;
+
+box-sizing:border-box;
+
 }
 
 textarea{
 
-width:100%;
-height:300px;
-
-background:#111833;
-
-color:white;
-
-border:none;
-
-border-radius:20px;
-
-padding:20px;
+height:180px;
 
 }
 
@@ -34,15 +68,55 @@ width:100%;
 
 padding:18px;
 
-margin-top:20px;
-
-background:orange;
+margin-top:18px;
 
 border:none;
 
+border-radius:15px;
+
+background:
+
+linear-gradient(
+90deg,
+#00aaff,
+#ffd000
+);
+
+color:black;
+
+font-size:18px;
+
+}
+
+.card{
+
+background:#101010;
+
+padding:16px;
+
+border-radius:16px;
+
+margin-top:16px;
+
+}
+
+.del{
+
+background:red;
+
 color:white;
 
-border-radius:20px;
+}
+
+a{
+
+display:block;
+
+text-align:center;
+
+margin-top:20px;
+
+color:white;
 
 }
 
@@ -52,21 +126,192 @@ border-radius:20px;
 
 <body>
 
-<h1>📁 Notes</h1>
+<div class="box">
 
-<textarea placeholder="Write notes..."></textarea>
+<h1>
 
-<button>Save Note</button>
+📝 Notes Box
 
-<a href="index.html">
+</h1>
 
-<button>
+<input
 
-⬅ Back
+id="title"
+
+placeholder="Title">
+
+<textarea
+
+id="note"
+
+placeholder="নোট লিখো">
+
+</textarea>
+
+<button
+
+onclick="saveNote()">
+
+SAVE
 
 </button>
 
+<div
+id="list">
+
+</div>
+
+</div>
+
+<a
+href="index.html">
+
+← Dashboard
+
 </a>
+
+<script>
+
+let notes=
+
+JSON.parse(
+
+localStorage
+.getItem(
+"notes"
+
+)
+
+)||[];
+
+function saveNote(){
+
+let t=
+
+document
+.getElementById(
+"title"
+)
+.value;
+
+let n=
+
+document
+.getElementById(
+"note"
+)
+.value;
+
+if(!t&&!n)
+return;
+
+notes.push({
+
+title:t,
+
+note:n
+
+});
+
+localStorage
+.setItem(
+
+"notes",
+
+JSON.stringify(
+notes
+
+)
+
+);
+
+show();
+
+}
+
+function remove(i){
+
+notes.splice(
+i,
+1
+);
+
+localStorage
+.setItem(
+
+"notes",
+
+JSON.stringify(
+notes
+
+)
+
+);
+
+show();
+
+}
+
+function show(){
+
+let html="";
+
+notes.forEach(
+
+(x,i)=>{
+
+html+=`
+
+<div class=card>
+
+<h3>
+
+${x.title}
+
+</h3>
+
+<p>
+
+${x.note}
+
+</p>
+
+<button
+
+class=del
+
+onclick=
+
+remove(${i})
+
+>
+
+DELETE
+
+</button>
+
+</div>
+
+`;
+
+}
+
+);
+
+document
+.getElementById(
+"list"
+)
+
+.innerHTML=
+
+html;
+
+}
+
+show();
+
+</script>
 
 </body>
 
