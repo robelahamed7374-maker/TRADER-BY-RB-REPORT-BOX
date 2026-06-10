@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>RB SYSTEM</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h1>
+<span class="green">RB</span>
+SYSTEM
+</h1>
+
+<p>TRADING DASHBOARD</p>
+
+<a class="menu active">📊 Trading Setup</a>
+<a class="menu">📈 Reports Box</a>
+<a class="menu">🖼 Media Box</a>
+<a class="menu">📝 Notes Box</a>
+<a class="menu">🏆 History Box</a>
+<a class="menu">⚙ Settings Box</a>
+
+<div class="copy">
+© 2025 RB System
+</div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+<div class="box">
+
+<div class="title">
+
+📊 Trading Setup
+
+<button id="resetBtn">
+↻ Reset
+</button>
+
+</div>
+
+
+<div class="grid">
+
+<input
+id="name"
+placeholder="Ex: OTC Breakout"
+>
+
+<select id="market">
+
+<option>OTC</option>
+
+<option>Real Market</option>
+
+</select>
+
+<input
+id="pair"
+placeholder="Ex: EUR/USD"
+>
+
+<input
+id="win"
+placeholder="Ex: 80%"
+>
+
+</div>
+
+
+<textarea
+id="note"
+placeholder="এখানে তোমার সেটআপ এবং স্ট্রাটেজি লিখো..."
+></textarea>
+
+
+<div class="grid">
+
+<input
+id="video"
+placeholder="https://youtube.com/"
+>
+
+<input
+id="desc"
+placeholder="ছবি সম্পর্কে লিখো..."
+>
+
+</div>
+
+
+<input
+id="photo"
+type="file"
+accept="image/*"
+>
+
+
+<button
+id="saveBtn"
+class="save">
+
+💾 SAVE
+
+</button>
+
+</div>
+
+
+
+<!-- SAVED -->
+
+<div class="saved">
+
+<div class="top">
+
+<h2>
+
+🗂 Saved Trading Setups
+
+</h2>
+
+<input
+id="search"
+placeholder="Search setups..."
+>
+
+<div id="total">
+
+Total: 0
+
+</div>
+
+</div>
+
+
+<div id="cards"></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
