@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>RB REPORT BOX</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<h2>RB REPORT BOX</h2>
+<div class="top">
 
-<input type="text" id="title" placeholder="Report Title">
+<h1>📊 RB REPORT BOX</h1>
 
-<textarea id="text" placeholder="Write report..."></textarea>
+<p>TOOLS DASHBOARD</p>
 
-<input type="file" id="image">
+</div>
 
-<input type="file" id="video">
+<div class="grid">
 
-<button>Save</button>
+<div class="card report">
+<div class="icon">📝</div>
+<h3>Reports</h3>
+</div>
 
-<div id="reports"></div>
+<div class="card media">
+<div class="icon">🖼️</div>
+<h3>Media</h3>
+</div>
+
+<div class="card notes">
+<div class="icon">📂</div>
+<h3>Notes</h3>
+</div>
+
+<div class="card history">
+<div class="icon">🏆</div>
+<h3>History</h3>
+</div>
+
+<div class="card settings">
+<div class="icon">⚙️</div>
+<h3>Settings</h3>
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
