@@ -1,184 +1,360 @@
 const saveBtn=document.getElementById("saveBtn");
-const savedBox=document.getElementById("savedBox");
+
+const cards=document.getElementById("cards");
+
 const search=document.getElementById("search");
 
-let setups=JSON.parse(localStorage.getItem("rbSetups"))||[];
+const total=document.getElementById("total");
 
-render();
+let setups=
+JSON.parse(
+localStorage.getItem(
+"rbTrading"
+)
+)||[];
 
-saveBtn.onclick=function(){
 
-const setup={
-name:document.getElementById("setupName").value,
-market:document.getElementById("market").value,
-pair:document.getElementById("pair").value,
-win:document.getElementById("win").value,
-note:document.getElementById("note").value,
-video:document.getElementById("video").value,
-photoText:document.getElementById("photoText").value,
-img:"",
-time:new Date().toLocaleString()
+
+function save(){
+
+const photo=
+document
+.getElementById("photo")
+.files[0];
+
+const reader=
+new FileReader();
+
+reader.onload=function(){
+
+const item={
+
+name:
+name.value,
+
+market:
+market.value,
+
+pair:
+pair.value,
+
+win:
+win.value,
+
+note:
+note.value,
+
+video:
+video.value,
+
+desc:
+desc.value,
+
+photo:
+reader.result,
+
+date:
+new Date()
+.toLocaleString()
+
 };
 
-let file=document.getElementById("photo").files[0];
-
-if(file){
-
-let reader=new FileReader();
-
-reader.onload=function(e){
-
-setup.img=e.target.result;
-
-setups.unshift(setup);
+setups.unshift(item);
 
 localStorage.setItem(
-"rbSetups",
+"rbTrading",
 JSON.stringify(setups)
 );
 
 render();
 
+clear();
+
 };
 
-reader.readAsDataURL(file);
+if(photo){
 
-}else{
-
-setups.unshift(setup);
-
-localStorage.setItem(
-"rbSetups",
-JSON.stringify(setups)
+reader.readAsDataURL(
+photo
 );
-
-render();
 
 }
 
-document.getElementById("form").reset();
+else{
 
-};
+reader.onload();
+
+}
+
+}
+
+
 
 function render(){
 
-savedBox.innerHTML="";
+cards.innerHTML="";
 
-let text=
-search.value?.toLowerCase()||"";
+let data=
+setups.filter(x=>
 
-setups
-.filter(
-x=>
 x.name
 .toLowerCase()
-.includes(text)
+
+.includes(
+
+search.value
+.toLowerCase()
+
 )
 
-.forEach((x,i)=>{
+);
 
-savedBox.innerHTML+=`
 
-<div class="card">
 
-<h2>${x.name}</h2>
+total.innerHTML=
 
-<p>Market :
-${x.market}</p>
+"Total: "
 
-<p>Pair :
-${x.pair}</p>
++
 
-<p>Win :
-${x.win}%</p>
+data.length;
 
-<p>${x.note}</p>
 
-<p>${x.photoText}</p>
 
-${
-x.video
-?
+data.forEach(
 
-`
-<video
-controls
-width="100%"
-src="${x.video}">
-</video>
-`
+(item,index)=>{
 
-:""
-}
+cards.innerHTML+=`
 
-${
-x.img
-?
+<div class=card>
 
-`
 <img
-src="${x.img}"
-style="
-width:100%;
-margin-top:10px;
-border-radius:10px;
-">
-`
-
-:""
+class=preview
+src="${
+item.photo
+||
+'https://picsum.photos/300'
 }
+">
+
+<div class=content>
+
+<div class=name>
+
+${item.name}
+
+</div>
+
+<div class=row>
+
+<div>
+
+Market:
+
+${item.market}
+
+</div>
+
+<div>
+
+Pair:
+
+${item.pair}
+
+</div>
+
+<div>
+
+Win Rate:
+
+${item.win}
+
+</div>
+
+</div>
+
+<p>
+
+${item.note}
+
+</p>
+
+<br>
+
+<div>
+
+📅
+
+${item.date}
+
+</div>
+
+</div>
+
+
+<div class=actions>
 
 <button
-onclick="preview('${x.img}')">
+class=play
 
-Preview
+onclick="playVideo(
+
+'${item.video}'
+
+)"
+
+>
+
+▶ Play
 
 </button>
 
-<button
-onclick="removeData(${i})">
 
-Delete
+<button
+class=view
+
+onclick="viewPhoto(
+
+'${item.photo}'
+
+)"
+
+>
+
+🖼 Photo
+
+</button>
+
+
+<button
+class=delete
+
+onclick="removeCard(
+
+${index}
+
+)"
+
+>
+
+🗑 Delete
 
 </button>
 
 </div>
 
-`;
+</div>
 
-});
+`;
 
 }
 
-function removeData(i){
+);
+
+}
+
+
+
+function removeCard(i){
 
 setups.splice(i,1);
 
 localStorage.setItem(
-"rbSetups",
+
+"rbTrading",
+
 JSON.stringify(setups)
+
 );
 
 render();
 
 }
 
-function preview(img){
 
-if(!img){
 
-alert("Photo নাই");
+function playVideo(url){
 
-return;
+if(url){
+
+window.open(
+
+url,
+
+"_blank"
+
+);
 
 }
 
-window.open(img);
+}
+
+
+
+function viewPhoto(url){
+
+if(url){
+
+window.open(
+
+url,
+
+"_blank"
+
+);
 
 }
 
-if(search){
+}
+
+
+
+function clear(){
+
+name.value="";
+
+pair.value="";
+
+win.value="";
+
+note.value="";
+
+video.value="";
+
+desc.value="";
+
+photo.value="";
+
+}
+
+
+
+saveBtn.onclick=save;
 
 search.oninput=render;
 
-}
+
+
+document
+.getElementById(
+"resetBtn"
+)
+
+.onclick=
+
+()=>{
+
+localStorage.removeItem(
+"rbTrading"
+);
+
+setups=[];
+
+render();
+
+};
+
+
+
+render();
