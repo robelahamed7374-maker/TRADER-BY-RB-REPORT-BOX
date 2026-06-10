@@ -1,19 +1,38 @@
-document.querySelector(".report").onclick = () => {
-location.href = "reports.html";
-};
+function openBox(name){
 
-document.querySelector(".media").onclick = () => {
-location.href = "media.html";
-};
+if(name==="Reports খুলবে"){
 
-document.querySelector(".notes").onclick = () => {
-location.href = "notes.html";
-};
+location.href=
+"reports.html";
 
-document.querySelector(".history").onclick = () => {
-location.href = "history.html";
-};
+}
 
-document.querySelector(".settings").onclick = () => {
-location.href = "settings.html";
-};
+if(name==="Media খুলবে"){
+
+location.href=
+"media.html";
+
+}
+
+if(name==="Notes খুলবে"){
+
+location.href=
+"notes.html";
+
+}
+
+if(name==="History খুলবে"){
+
+location.href=
+"history.html";
+
+}
+
+if(name==="Settings খুলবে"){
+
+location.href=
+"settings.html";
+
+}
+
+}
